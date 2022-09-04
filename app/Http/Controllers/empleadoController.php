@@ -12,8 +12,10 @@ class empleadoController extends Controller
 {
     public function index()
     {
+    
+        $areas = Area::all();
         $empleados = Empleado::all();
-        return view ('empleados.index')->with('empleados', $empleados);
+        return view ('empleados.index')->with(compact('empleados', $empleados))->with(compact('areas', $areas));
     }
 
     public function create()
@@ -33,8 +35,9 @@ class empleadoController extends Controller
 
     public function show($id)
     {
-        $empleado = Empleado::find($id);
-        return view('empleados.show')->with('empleados', $empleado);
+        $areas = Area::all();
+        $empleados = Empleado::find($id);
+        return view('empleados.show')->with(compact('empleados', $empleados))->with(compact('areas', $areas));
     }
 
     public function edit($id)
